@@ -1,0 +1,14 @@
+Django==4.1.2
+asgiref
+autopep8
+dj-database-url
+gunicorn
+pycodestyle
+pytz
+sqlparse
+toml
+Unipath
+whitenoise
+django-environ
+django-allauth
+django-sslserver
