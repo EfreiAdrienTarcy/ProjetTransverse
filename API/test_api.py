@@ -21,12 +21,6 @@ get_product = api_url + "output.json/products/find:"
 
 test_request = "https://api.cardmarket.com/ws/v2.0/products/find?search=Springleaf&idGame=1&idLanguage=1"
 
-app_token = 'ELwCFTse0F5hLf5R'
-app_secret = 'lL5RalXOXdG0wvscfNDgd097oYSgblcf'
-
-access_token = ''
-access_token_secret = ''
-
 os.environ['MKM_APP_TOKEN'] = 'ELwCFTse0F5hLf5R'
 os.environ['MKM_APP_SECRET'] = 'lL5RalXOXdG0wvscfNDgd097oYSgblcf'
 
