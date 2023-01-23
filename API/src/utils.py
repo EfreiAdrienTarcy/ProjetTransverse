@@ -23,3 +23,11 @@ def get_mkm_access_token():
 
 def get_mkm_access_token_secret():
     return _get_env_var("MKM_ACCESS_TOKEN_SECRET")
+
+def parse_find_product(request_result):
+    
+    return True
+
+def parse_product(request_result):
+    result_json = request_result.json()
+    return True
