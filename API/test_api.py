@@ -6,9 +6,6 @@ from urllib import response
 
 import requests
 
-from requests_oauthlib import OAuth1Session
-from requests_oauthlib import OAuth1
-
 from mkmsdk.mkm import Mkm
 from mkmsdk.api_map import _API_MAP
 
