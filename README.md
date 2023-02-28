@@ -27,4 +27,3 @@ $python main.py test.jpg
 ```
 https://www.cards-capital.com/ © all rights reserved for the card images
 ```
-
