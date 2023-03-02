@@ -19,7 +19,7 @@ def rec(images: List) -> List[Tuple[str,float]]:
 
     rec_model = crnn_mobilenet_v3_small(pretrained=False)
 
-    rec_model.load_state_dict(torch.load("crnn_mobilenet_v3_small_pretranied.pt", map_location="cpu"))
+    rec_model.load_state_dict(torch.load(os.getcwd()+"/ocr/crnn_mobilenet_v3_small_pretranied.pt", map_location="cpu"))
 
     predictor = recognition_predictor(arch=rec_model)
 

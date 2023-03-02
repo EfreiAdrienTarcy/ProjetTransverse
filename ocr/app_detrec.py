@@ -9,8 +9,8 @@ from doctr.models import ocr_predictor, sar_resnet31,crnn_mobilenet_v3_small,db_
 
 rec_model = crnn_mobilenet_v3_small(pretrained=False)
 det_model=db_resnet50(pretrained=False)
-rec_model.load_state_dict(torch.load("crnn_mobilenet_v3_small_pretranied.pt", map_location="cpu"))
-det_model.load_state_dict(torch.load("db_resnet50_latest.pt", map_location="cpu"))
+rec_model.load_state_dict(torch.load(os.getcwd()+"/ocr/crnn_mobilenet_v3_small_pretranied.pt", map_location="cpu"))
+det_model.load_state_dict(torch.load(os.getcwd()+"/ocr/db_resnet50_latest.pt", map_location="cpu"))
 predictor = ocr_predictor(reco_arch=rec_model, 
                           det_arch=det_model,
                           pretrained_backbone=True,
