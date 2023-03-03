@@ -12,3 +12,5 @@ whitenoise
 django-environ
 django-allauth
 django-sslserver
+mkmsdk
+bs4

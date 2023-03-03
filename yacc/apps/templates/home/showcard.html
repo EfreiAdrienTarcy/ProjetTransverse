@@ -1,0 +1,70 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Card details {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+      <div class="d-block mb-4 mb-md-0">
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+              <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+                  <li class="breadcrumb-item">
+                      <a href="#">
+                          <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                      </a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="{% url 'home' %}">Yacc</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'collections_index' %}">Collection</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Card details</li>
+              </ol>
+          </nav>
+          <h2 class="h4">Card {{card.id}}</h2>
+          <p class="mb-0">More infos to come.</p>
+      </div>
+  </div>
+
+  <!-- Begin form-->
+  <div class="row">
+    <div class="col-12 mb-4">
+        <div class="card border-0 shadow components-section">
+            <div class="card-body"> 
+                <div class="card mx-auto mt-3 shadow" style="width: 35.2rem;">
+                    <img src="https://vignette.wikia.nocookie.net/yugioh/images/0/06/DarkMagician-EN-Anime-DM.png" class="card-img-top" alt="Dark Magician">
+                    <div class="card-body bg-dark ">
+                      <h4 class="card-title text-center">Dark Magician</h4>
+                      <p class="card-text text-center">The ultimate wizard in terms of attack and defense.</p>
+                      <hr>
+                      <div class="row">
+                        <div class="col-5">
+                          <p class="card-text"><strong>Attribute:</strong> DARK</p>
+                          <p class="card-text"><strong>Type:</strong> Spellcaster</p>
+                          <p class="card-text"><strong>Level:</strong> 7</p>
+                        </div>
+                        <div class="col-7">
+                          <p class="card-text"><strong>ATK/DEF:</strong> 2500 / 2100</p>
+                          <p class="card-text"><strong>Number:</strong> YGLD-ENB02</p>
+                        </div>
+                      </div>
+                      <hr>
+                      <p class="card-text"><strong>Description:</strong> The ultimate wizard in terms of attack and defense.</p>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">© 1996 Kazuki Takahashi</small>
+                    </div>
+                  </div>
+                  
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- End form-->
+
+  <br><br><br>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

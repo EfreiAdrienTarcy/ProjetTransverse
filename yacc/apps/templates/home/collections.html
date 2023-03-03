@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Transactions {% endblock %} 
+{% block title %} Collections {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -17,15 +17,15 @@
                           <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                       </a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#">Yacc</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Transactions</li>
+                  <li class="breadcrumb-item"><a href="{% url 'home' %}">Yacc</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Collections</li>
               </ol>
           </nav>
           <h2 class="h4">All Cards</h2>
           <p class="mb-0">You can find here all your scanned cards.</p>
       </div>
       <div class="btn-toolbar mb-2 mb-md-0">
-          <a href="#" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
+          <a href="{% url 'scancard' %}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
               <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
               New Scan
           </a>
@@ -69,9 +69,8 @@
       <table class="table table-hover">
           <thead>
               <tr>
-                  <th class="border-gray-200">#</th>
-                  <th class="border-gray-200">Card ID</th>						
-                  <th class="border-gray-200">Name of cards</th>
+                  <th class="border-gray-200">#</th>					
+                  <th class="border-gray-200">Name</th>
                   <th class="border-gray-200">Description</th>
                   <th class="border-gray-200">Price</th>
                   <th class="border-gray-200">Scan date</th>
@@ -79,20 +78,20 @@
               </tr>
           </thead>
           <tbody>
+            {% for card in cards  %}
               <!-- Item -->
               <tr>
                   <td>
-                      <a href="#" class="fw-bold">
-                          456478
+                      <a href="{% url 'showcard' card.id  %}" class="fw-bold">
+                          {{card.num}} 
                       </a>
                   </td>
                   <td>
-                      <span class="fw-normal">ZBGEUI</span>
-                  </td>
-                  <td><span class="fw-normal">NARUTO1</span></td>                        
-                  <td><span class="fw-normal">Lorem ipsum lorem ipsum</span></td>
+                      <span class="fw-normal">{{card.nom}} </span>
+                  </td>                      
+                  <td><span class="fw-normal">{{card.description}}</span></td>
                   <td><span class="fw-bold">$799,00</span></td>
-                  <td><span class="fw-bold text-warning">1 Jun 2020</span></td>
+                  <td><span class="fw-bold text-warning">{{card.date_enregistrement}} </span></td>
                   <td>
                       <div class="btn-group">
                           <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -108,7 +107,8 @@
                           </div>
                       </div>
                   </td>
-              </tr>                               
+              </tr>
+              {% endfor %}                               
           </tbody>
       </table>
       <div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">

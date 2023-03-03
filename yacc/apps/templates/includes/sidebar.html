@@ -50,16 +50,16 @@
                   <span class="sidebar-text">Dashboard</span>
                 </a>
               </li>
-              <li class="nav-item {% if 'transactions' in segment %} active {% endif %}">
-                <a href="/transactions.html" class="nav-link">
+              <li class="nav-item {% if 'collections' in segment %} active {% endif %}">
+                <a href="{% url 'collections_index' %}" class="nav-link">
                   <span class="sidebar-icon">
                     <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path></svg>
                   </span>
-                  <span class="sidebar-text">My transactions</span>
+                  <span class="sidebar-text">My collection</span>
                 </a>
               </li>
               <li class="nav-item {% if 'scancard' in segment %} active {% endif %}">
-                <a href="/scancard.html" class="nav-link">
+                <a href=" {% url 'scancard' %}" class="nav-link">
                   <span class="sidebar-icon">
                     <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"></path><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path></svg>
                   </span>
