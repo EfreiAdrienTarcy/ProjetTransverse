@@ -9,7 +9,10 @@ images=sys.argv[1]
 
 detandrec,reconly=app_detrec.detrec(images),app_rec.rec(images)
 
-def result():
+def result(images):
+
+    detandrec,reconly=app_detrec.detrec(images),app_rec.rec(images)
+
     best_results=[]
     for i in range(len(detandrec)):
         
@@ -39,5 +42,5 @@ def result():
 
 print("Detection and recognition: ",detandrec,"\nRecognition only: ",reconly, "\nBest results: ",result())
 
-result()
+result(images)
 

@@ -19,4 +19,5 @@ for image in ocr_result:
     try:
         api_main.card_search(image[0])
     except:
-        print('failure')
+
+        print('failure for image code' + image[0])

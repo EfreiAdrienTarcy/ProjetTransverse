@@ -22,11 +22,11 @@ user_id = 'ADTARCY'
 mkm_sandbox = Mkm(_API_MAP["2.0"]["api"], _API_MAP["2.0"]["api_root"])
 
 #all_games = mkm_sandbox.market_place.games()
-exemple_product = mkm_sandbox.market_place.product(product=361648)
+final_product = mkm_sandbox.market_place.product(product=361648)
 
 
 #print(all_games.json())
-#print(exemple_product.json())
+#print(final_product.json())
 
 card_code = 'ETC-038'
 def card_search(card_code):
@@ -40,16 +40,16 @@ def card_search(card_code):
     Francais : idLanguage = 2
     '''
 
-    exemple_find = mkm_sandbox.market_place.find_product(params={"search":card_code,"idGame":3,"idLanguage":1})
+    find = mkm_sandbox.market_place.find_product(params={"search":card_code,"idGame":3,"idLanguage":1})
 
-    if exemple_find.status_code == 200:
-        #print(json.dumps(exemple_find.json(),indent=1))
-        print(exemple_find.text())
-        product_id = exemple_find.json().pop('product')[0].pop('idProduct')
+    if find.status_code == 200:
+        #print(json.dumps(find.json(),indent=1))
+        #print(find.text())
+        product_id = find.json().pop('product')[0].pop('idProduct')
 
-        exemple_product = mkm_sandbox.market_place.product(product=product_id)
+        final_product = mkm_sandbox.market_place.product(product=product_id)
 
-        tmp = exemple_product.json().pop('product')
+        tmp = final_product.json().pop('product')
         tmp_price_guide = tmp.pop('priceGuide')
 
         print('idProduct')
@@ -84,5 +84,5 @@ def card_search(card_code):
 
     else:
         print('error bad request')
-        print(exemple_find.status_code)
-        print(exemple_find.text)
+        print(find.status_code)
+        print(find.text)
