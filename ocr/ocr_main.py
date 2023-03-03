@@ -31,7 +31,7 @@ def result():
             try:
                 value=reconly[i][0]
                 confidence=reconly[i][1]
-                best_results.append((value.split('-'),confidence))
+                best_results.append((value.split('-')[0] + '-' + value.split('-')[2],confidence))
             except:
                 print("no detection")
                 best_results.append('no card detected')
