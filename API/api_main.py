@@ -19,7 +19,7 @@ os.environ['MKM_ACCESS_TOKEN_SECRET'] =''
 
 user_id = 'ADTARCY'
 
-mkm_sandbox = Mkm(_API_MAP["2.0"]["api"], _API_MAP["2.0"]["api_sandbox_root"])
+mkm_sandbox = Mkm(_API_MAP["2.0"]["api"], _API_MAP["2.0"]["api_root"])
 
 #all_games = mkm_sandbox.market_place.games()
 exemple_product = mkm_sandbox.market_place.product(product=361648)
@@ -28,60 +28,61 @@ exemple_product = mkm_sandbox.market_place.product(product=361648)
 #print(all_games.json())
 #print(exemple_product.json())
 
+card_code = 'ETC-038'
+def card_search(card_code):
 
-exemple_find = mkm_sandbox.market_place.find_product(params={"search":"MRD-001","idGame":3,"idLanguage":1})
+    '''
+    Pour les requetes sur les cartes YuGiOh :
+    idGame = 3
 
-if exemple_find.status_code == 200:
-    print(json.dumps(exemple_find.json(),indent=1))
-else:
-    print('error bad request')
-    print(exemple_find.status_code)
-    print(exemple_find.json())
+    Pour la langue des cartes :
+    Anglais : idLanguage = 1
+    Francais : idLanguage = 2
+    '''
 
+    exemple_find = mkm_sandbox.market_place.find_product(params={"search":card_code,"idGame":3,"idLanguage":1})
 
-'''
-Pour les requetes sur les cartes YuGiOh :
-idGame = 3
+    if exemple_find.status_code == 200:
+        #print(json.dumps(exemple_find.json(),indent=1))
+        print(exemple_find.text())
+        product_id = exemple_find.json().pop('product')[0].pop('idProduct')
 
-Pour la langue des cartes :
-Anglais : idLanguage = 1
-Francais : idLanguage = 2
-'''
+        exemple_product = mkm_sandbox.market_place.product(product=product_id)
 
+        tmp = exemple_product.json().pop('product')
+        tmp_price_guide = tmp.pop('priceGuide')
 
-product_id = exemple_find.json().pop('product')[0].pop('idProduct')
+        print('idProduct')
+        print(tmp.get('idProduct'))
 
-exemple_product = mkm_sandbox.market_place.product(product=product_id)
+        print('\nenName')
+        print(tmp.get('enName'))
 
-tmp = exemple_product.json().pop('product')
-tmp_price_guide = tmp.pop('priceGuide')
+        print('\nfrName')
+        print(tmp.get('localization')[1].get('name'))
 
-print('idProduct')
-print(tmp.get('idProduct'))
+        print('\nimageURL')
+        print(tmp.get('image'))
 
-print('\nenName')
-print(tmp.get('enName'))
+        print('\nprice_average')
+        print(tmp_price_guide.get('AVG'))
 
-print('\nfrName')
-print(tmp.get('localization')[1].get('name'))
+        print('\nsellprice')
+        print(tmp_price_guide.get('SELL'))
 
-print('\nimageURL')
-print(tmp.get('image'))
-
-print('\nprice_average')
-print(tmp_price_guide.get('AVG'))
-
-print('\nsellprice')
-print(tmp_price_guide.get('SELL'))
-
-print('\nselltrend')
-print(tmp_price_guide.get('TREND'))
+        print('\nselltrend')
+        print(tmp_price_guide.get('TREND'))
 
 
-expansion_test = mkm_sandbox.market_place.expansions(game=3)
-tmp = expansion_test.json()
+        expansion_test = mkm_sandbox.market_place.expansions(game=3)
+        tmp = expansion_test.json()
 
-exp_object = tmp.pop('expansion')[0]
+        exp_object = tmp.pop('expansion')[0]
 
-print(exp_object.pop('enName'))
-print(exp_object.pop('abbreviation'))
+        print(exp_object.pop('enName'))
+        print(exp_object.pop('abbreviation'))
+
+    else:
+        print('error bad request')
+        print(exemple_find.status_code)
+        print(exemple_find.text)
