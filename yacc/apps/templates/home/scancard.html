@@ -22,13 +22,15 @@
     <div class="col-12 mb-4">
         <div class="card border-0 shadow components-section">
             <div class="card-body"> 
-                <form>
+                <form method="POST">
+                    {% csrf_token %}
                     <div class="my-4">
-                        <label for="formFile" class="form-label">Insérer une image</label>
-                        <input class="form-control" type="file" id="formFile" accept="image/*" capture>
+                        <label for="formFile" class="form-label">Capturer ou insérer une image</label>
+                        <!--<input class="form-control" name="carte" type="file" id="formFile" accept="image/*" capture> -->
+                        {{form.file}}
                     </div>
                     <div>
-                        <button class="btn btn-primary" type="button"><i class="fa-solid fa-paper-plane"></i> Envoyer</button>
+                        <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Envoyer</button>
                     </div>
                 </form>
             </div>

@@ -31,6 +31,9 @@ ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets')
 ALLOWED_HOSTS        = ['localhost', 'localhost:5085', '127.0.0.1', env('SERVER', default='127.0.0.1') ]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:5085', 'http://127.0.0.1', 'https://' + env('SERVER', default='127.0.0.1') ]
 
+# Autofield
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -149,6 +152,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'media/')
 
 #############################################################
 # OAuth settings 

@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 
 from .models import *
+from .forms import ScancardForm
 
 @login_required(login_url="/login/")
 def index(request):
@@ -51,7 +52,17 @@ def collections_index(request):
 
 @login_required(login_url="/login/")
 def scancard(request):
-    context = { }
+    if request.method == 'POST':
+        form = ScancardForm(request.POST, request.FILES)
+        if form.is_valid():
+            # traitement
+            #Cartes.upload_card(request.FILES['file], request)
+            # form.save()
+            print('Carte bien uploadée')
+    else:
+        form = ScancardForm()
+    
+    context = {'form':form }
     html_template = "home/scancard.html"
     return render(request, html_template, context)
 

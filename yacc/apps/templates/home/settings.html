@@ -60,13 +60,13 @@
                         <div class="col-md-6 mb-3">
                             <div>
                                 <label for="first_name">First Name</label>
-                                <input class="form-control" id="first_name" type="text" placeholder="Enter your first name" required>
+                                <input class="form-control" id="first_name" type="text" placeholder="Enter your first name" value="{{ request.user.first_name }}" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
                                 <label for="last_name">Last Name</label>
-                                <input class="form-control" id="last_name" type="text" placeholder="Also your last name" required>
+                                <input class="form-control" id="last_name" type="text" placeholder="Also your last name" value="{{ request.user.last_name }}" required>
                             </div>
                         </div>
                     </div>

@@ -97,18 +97,18 @@ class Cartes(models.Model):
     num = models.TextField(blank=True, null=True)  # This field type is a guess.
     nom = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    image = models.BinaryField(blank=True, null=True)
+    image = models.ImageField(upload_to="media/")
     level = models.TextField(blank=True, null=True)  # This field type is a guess.
     attribute = models.TextField(blank=True, null=True)
     type = models.TextField(blank=True, null=True)
-    date_enregistrement = models.DateField(blank=True, null=True)
+    date_enregistrement = models.DateField(auto_now_add=True)
     id_user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='id_user', blank=True, null=True)
 
     def __str__(self):
         return self.nom or ' '
     
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'cartes'
 
 
