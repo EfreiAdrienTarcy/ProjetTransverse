@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'allauth.account',                              # OAuth new
     'allauth.socialaccount',                        # OAuth new 
     'allauth.socialaccount.providers.github',       # OAuth new 
-    "sslserver" 
+    "sslserver" ,
+    'fontawesomefree',
 ]
 
 MIDDLEWARE = [

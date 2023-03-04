@@ -44,13 +44,23 @@
               <tr>
                   <td>
                       <a href="{% url 'showcard' card.id  %}" class="fw-bold">
-                          {{card.num}} 
+                        <i class="fa fa-link text-secondary" aria-hidden="true"></i> {{card.num}} 
                       </a>
                   </td>
                   <td>
-                      <span class="fw-normal">{{card.nom}} </span>
-                  </td>                      
-                  <td><span class="fw-normal">{{card.description}}</span></td>
+                    <div class="d-flex align-items-center">
+                        <a href="{% url 'showcard' card.id  %}" >
+                            <div class="avatar d-flex align-items-center justify-content-center fw-bold rounded bg-secondary me-3">
+                                <span><img class="img-thumbnail circle-img img-circle" src="https://appsrv1-147a1.kxcdn.com/volt-dashboard-pro-django-v1.0.10/images/user.png"></span>
+                            </div>
+                        </a>   
+                        <div class="d-block">
+                            <span class="fw-bold"> </span>
+                            <span class="fw-normal">{{card.nom|upper}} </span>
+                        </div>
+                    </div>  
+                </td>                      
+                  <td><span class="fw-normal">{{card.description|truncatechars:25}}</span></td>
                   <td><span class="fw-bold">$799,00</span></td>
                   <td><span class="fw-bold text-warning">{{card.date_enregistrement}} </span></td>
                   <td>
@@ -62,8 +72,7 @@
                               <span class="visually-hidden">Toggle Dropdown</span>
                           </button>
                           <div class="dropdown-menu py-0">
-                              <a class="dropdown-item rounded-top" href="#"><span class="fas fa-eye me-2"></span>View Details</a>
-                              <a class="dropdown-item" href="#"><span class="fas fa-edit me-2"></span>Edit</a>
+                              <a class="dropdown-item rounded-top" href="{% url 'showcard' card.id  %}"><span class="fas fa-eye me-2"></span>View Details</a>
                               <a class="dropdown-item text-danger rounded-bottom" href="#"><span class="fas fa-trash-alt me-2"></span>Remove</a>
                           </div>
                       </div>
