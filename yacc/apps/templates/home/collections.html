@@ -1,0 +1,92 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Collections {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active" aria-current="page">My Collection</li>
+{% endblock breadcrumb %}
+
+
+{% block content %}
+
+
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+      <div class="d-block mb-4 mb-md-0">
+          <h2 class="h4">All Cards</h2>
+          <p class="mb-0">You can find here all your scanned cards.</p>
+      </div>
+      <div class="btn-toolbar mb-2 mb-md-0">
+          <a href="{% url 'scancard' %}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
+              <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+              New Scan
+          </a>
+      </div>
+  </div>
+  
+  <div class="card card-body border-0 shadow table-wrapper table-responsive">
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th class="border-gray-200">#</th>					
+                  <th class="border-gray-200">Name</th>
+                  <th class="border-gray-200">Description</th>
+                  <th class="border-gray-200">Price</th>
+                  <th class="border-gray-200">Scan date</th>
+                  <th class="border-gray-200">Action</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for card in cards  %}
+              <!-- Item -->
+              <tr>
+                  <td>
+                      <a href="{% url 'showcard' card.id  %}" class="fw-bold">
+                        <i class="fa fa-link text-secondary" aria-hidden="true"></i> {{card.num}} 
+                      </a>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                        <a href="{% url 'showcard' card.id  %}" >
+                            <div class="avatar d-flex align-items-center justify-content-center fw-bold rounded bg-secondary me-3">
+                                <span><img class="img-thumbnail circle-img img-circle" src="https://appsrv1-147a1.kxcdn.com/volt-dashboard-pro-django-v1.0.10/images/user.png"></span>
+                            </div>
+                        </a>   
+                        <div class="d-block">
+                            <span class="fw-bold"> </span>
+                            <span class="fw-normal">{{card.nom|upper}} </span>
+                        </div>
+                    </div>  
+                </td>                      
+                  <td><span class="fw-normal">{{card.description|truncatechars:25}}</span></td>
+                  <td><span class="fw-bold">$799,00</span></td>
+                  <td><span class="fw-bold text-warning">{{card.date_enregistrement}} </span></td>
+                  <td>
+                      <div class="btn-group">
+                          <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="icon icon-sm">
+                                  <span class="fas fa-ellipsis-h icon-dark"></span>
+                              </span>
+                              <span class="visually-hidden">Toggle Dropdown</span>
+                          </button>
+                          <div class="dropdown-menu py-0">
+                              <a class="dropdown-item rounded-top" href="{% url 'showcard' card.id  %}"><span class="fas fa-eye me-2"></span>View Details</a>
+                              <a class="dropdown-item text-danger rounded-bottom" href="#"><span class="fas fa-trash-alt me-2"></span>Remove</a>
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+              {% endfor %}                               
+          </tbody>
+      </table>
+      <div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+          
+      </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

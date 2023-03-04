@@ -12,3 +12,6 @@ whitenoise
 django-environ
 django-allauth
 django-sslserver
+mkmsdk
+bs4
+fontawesomefree==6.3.0

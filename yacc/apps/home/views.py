@@ -3,7 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
+from django.shortcuts import render, redirect
 
+from .models import *
+from .forms import ScancardForm
 
 @login_required(login_url="/login/")
 def index(request):
@@ -37,3 +40,35 @@ def pages(request):
     except:
         html_template = loader.get_template('home/page-500.html')
         return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def collections_index(request):
+    # Get all cards
+    cards = Cartes.objects.all()
+    context = {'cards': cards }
+    html_template = "home/collections.html"
+    return render(request, html_template, context)
+
+
+@login_required(login_url="/login/")
+def scancard(request):
+    if request.method == 'POST':
+        form = ScancardForm(request.POST, request.FILES)
+        if form.is_valid():
+            # traitement
+            #Cartes.upload_card(request.FILES['file], request)
+            # form.save()
+            print('Carte bien uploadée')
+    else:
+        form = ScancardForm()
+    
+    context = {'form':form }
+    html_template = "home/scancard.html"
+    return render(request, html_template, context)
+
+@login_required(login_url="/login/")
+def showcard(request,id):
+    card = Cartes.objects.get(id=id)
+    context = {'card':card}
+    html_template = "home/showcard.html"
+    return render(request, html_template, context)
