@@ -1,12 +1,9 @@
 import sys, os
+import io
+import numpy as np
 
+from PIL import Image
 # Make necessary imports
-from apps.home.API import api_main
-from apps.home.ocr import app_detrec, app_rec, ocr_main, cropper
-
-from mkmsdk.mkm import Mkm
-from mkmsdk.api_map import _API_MAP
-
 from django import template
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -16,6 +13,12 @@ from django.shortcuts import render, redirect
 
 from .models import *
 from .forms import ScancardForm
+
+from apps.home.API import api_main
+from apps.home.ocr import app_detrec, app_rec, ocr_main, cropper
+
+from mkmsdk.mkm import Mkm
+from mkmsdk.api_map import _API_MAP
 
 @login_required(login_url="/login/")
 def index(request):
@@ -68,8 +71,18 @@ def scancard(request):
             # traitement
             #Cartes.upload_card(request.FILES['file], request)
             # form.save()
+            
             images = request.FILES['file']
-            ocr_result = ocr_main.result(images)
+
+            # we need to read the image file
+            images = Image.open(io.BytesIO(images.read()))
+            # Convert the PIL image to a NumPy array
+            np_array_images = np.array(images)
+            print("\n\n type \n\n")
+            print(type(np_array_images))
+            print("\n\n type \n\n") 
+
+            ocr_result = ocr_main.result(np_array_images)
             mkm_sandbox = Mkm(_API_MAP["2.0"]["api"], _API_MAP["2.0"]["api_sandbox_root"])
 
             for image in ocr_result:

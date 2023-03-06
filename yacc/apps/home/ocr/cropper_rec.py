@@ -146,7 +146,7 @@ def contours_detailer(contour):
 
 def crop(image):
     # read the image
-    image = cv2.imread(str(image))#avec contour.jpg
+   # image = cv2.imread(image)#avec contour.jpg
     image_inverted = np.invert(image)
 
     # convert the image to grayscale format

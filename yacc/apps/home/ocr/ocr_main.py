@@ -5,7 +5,7 @@ from apps.home.ocr import app_rec
 import sys
 
 def result(images):
-
+    
     detandrec,reconly=app_detrec.detrec(images),app_rec.rec(images)
 
     best_results=[]
