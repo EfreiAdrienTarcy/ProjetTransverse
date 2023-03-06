@@ -14,10 +14,10 @@ urlpatterns = [
      # Transactions
     path("collections/", views.collections_index, name="collections_index"),
 
-    # Transactions
+    # scancard
     path("scancard/", views.scancard, name="scancard"),
 
-    # Transactions
+    # Showcard
     path("showcard/<int:id>", views.showcard, name="showcard"),
 
     # Matches any html file

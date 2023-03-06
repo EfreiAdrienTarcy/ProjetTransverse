@@ -1,7 +1,7 @@
 import torch
 import os
 os.environ["USE_TORCH"] = "1"
-import cropper_rec
+from apps.home.ocr import cropper_rec
 from typing import List,Tuple
 from doctr.models import recognition_predictor,crnn_mobilenet_v3_small
 
@@ -19,7 +19,7 @@ def rec(images: List) -> List[Tuple[str,float]]:
 
     rec_model = crnn_mobilenet_v3_small(pretrained=False)
 
-    rec_model.load_state_dict(torch.load(os.getcwd()+"/ocr/crnn_mobilenet_v3_small_pretranied.pt", map_location="cpu"))
+    rec_model.load_state_dict(torch.load(os.getcwd()+"/apps/home/ocr/crnn_mobilenet_v3_small_pretranied.pt", map_location="cpu"))
 
     predictor = recognition_predictor(arch=rec_model)
 
