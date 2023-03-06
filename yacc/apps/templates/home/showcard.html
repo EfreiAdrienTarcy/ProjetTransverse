@@ -26,34 +26,19 @@
         <div class="card border-0 shadow components-section">
             <div class="card-body"> 
               <div class="row">
-                <div class="col mb-4">
-                  <div class="card mx-auto mt-3 shadow">
-                    <img src="https://vignette.wikia.nocookie.net/yugioh/images/0/06/DarkMagician-EN-Anime-DM.png" class="card-img-top" alt="Dark Magician">
-                    <div class="card-body bg-dark ">
-                      <h4 class="card-title text-center">Dark Magician</h4>
-                      <p class="card-text text-center">The ultimate wizard in terms of attack and defense.</p>
-                      <hr>
-                      <div class="row">
-                        <div class="col-5">
-                          <p class="card-text"><strong>Attribute:</strong> DARK</p>
-                          <p class="card-text"><strong>Type:</strong> Spellcaster</p>
-                          <p class="card-text"><strong>Level:</strong> 7</p>
-                        </div>
-                        <div class="col-7">
-                          <p class="card-text"><strong>ATK/DEF:</strong> 2500 / 2100</p>
-                          <p class="card-text"><strong>Number:</strong> YGLD-ENB02</p>
-                        </div>
-                      </div>
-                      <hr>
-                      <p class="card-text"><strong>Description:</strong> The ultimate wizard in terms of attack and defense.</p>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">© 1996 Kazuki Takahashi</small>
-                    </div>
-                  </div>
+                <div class="col-4 my-4">
+                  <img src="{{card.image}}"  class="card-img-top img-responsive" style="width:70%" alt="Dark Magician">
+                  
                 </div>
-                <div class="col mt-3">
-                  <span> Cette carte est évaluée à <span class="badge bg-success">100 €</span> à ce jour <strong>03/03/2023</strong> sur le marché</span>
+                <div class="col-5 my-3">
+                  <h4 class="card-title text-center">{{card.nom}}</h4>
+                  <p> Cette carte est évaluée à <span class="badge bg-success">100 €</span> à ce jour <strong>03/03/2023</strong> sur le marché.</p>
+                  
+                  <br>
+                  <p class="card-text"><strong>Numéro :</strong> {{card.num}}</p>
+                  <p class="card-text"><strong>Catégorie :</strong> {{card.category}}</p>
+                  <p class="card-text"><strong>Rarity :</strong> {{card.rarity}}</p>
+                  <p class="card-text"><strong> <i class="fa-solid fa-gauge-simple"></i> Prix moyen :</strong> {{card.category}} €</p>
                 </div>
                 <div class="col"></div>
               </div>

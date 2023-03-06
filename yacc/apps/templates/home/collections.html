@@ -51,7 +51,7 @@
                     <div class="d-flex align-items-center">
                         <a href="{% url 'showcard' card.id  %}" >
                             <div class="avatar d-flex align-items-center justify-content-center fw-bold rounded bg-secondary me-3">
-                                <span><img class="img-thumbnail circle-img img-circle" src="https://appsrv1-147a1.kxcdn.com/volt-dashboard-pro-django-v1.0.10/images/user.png"></span>
+                                <span><img class="img-thumbnail circle-img img-circle" src="{{card.image}}"></span>
                             </div>
                         </a>   
                         <div class="d-block">
