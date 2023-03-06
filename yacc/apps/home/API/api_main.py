@@ -28,8 +28,6 @@ final_product = mkm_sandbox.market_place.product(product=361648)
 #print(all_games.json())
 #print(final_product.json())
 
-card_code = 'ETC-038'
-
 def card_search(card_code):
 
     '''
@@ -42,6 +40,8 @@ def card_search(card_code):
     '''
 
     find = mkm_sandbox.market_place.find_product(params={"search":card_code,"idGame":3,"idLanguage":1})
+    
+    result = {}
 
     if find.status_code == 200:
         #print(json.dumps(find.json(),indent=1))
@@ -51,6 +51,8 @@ def card_search(card_code):
         final_product = mkm_sandbox.market_place.product(product=product_id)
 
         tmp = final_product.json().pop('product')
+
+        '''
         tmp_price_guide = tmp.pop('priceGuide')
 
         print('idProduct')
@@ -82,8 +84,13 @@ def card_search(card_code):
 
         print(exp_object.pop('enName'))
         print(exp_object.pop('abbreviation'))
+        '''
+
+        tmp['image'] = 'https://sandbox.cardmarket.com/' + tmp['image']
+        result = tmp
 
     else:
         print('error bad request')
         print(find.status_code)
         print(find.text)
+    return result
