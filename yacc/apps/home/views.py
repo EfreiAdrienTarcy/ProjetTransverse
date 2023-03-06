@@ -1,12 +1,9 @@
 import sys, os
-# Get working directory and add ocr and API to it
-sys.path.append(os.path.join(os.getcwd(),'ocr'))
-sys.path.append(os.path.join(os.getcwd(),'API'))
-sys.path.append(".")
 
 # Make necessary imports
-from ocr import app_detrec, app_rec, ocr_main, cropper
 from API import api_main
+from ocr import app_detrec, app_rec, ocr_main, cropper
+
 from mkmsdk.mkm import Mkm
 from mkmsdk.api_map import _API_MAP
 
@@ -70,22 +67,25 @@ def scancard(request):
             # traitement
             #Cartes.upload_card(request.FILES['file], request)
             # form.save()
-            images = request.FILES['file']
 
-            detandrec,reconly=app_detrec.detrec(images),app_rec.rec(images)
+            
+            if request.FILES['file'] != None:
+                images = request.FILES['file']
 
-            ocr_result = ocr_main.result(images)
+                detandrec,reconly=app_detrec.detrec(images),app_rec.rec(images)
 
-            mkm_sandbox = Mkm(_API_MAP["2.0"]["api"], _API_MAP["2.0"]["api_sandbox_root"])
+                ocr_result = ocr_main.result(images)
 
-            for image in ocr_result:
-                print(image[0])
-                try:
-                    api_main.card_search(image[0])
-                except:
+                mkm_sandbox = Mkm(_API_MAP["2.0"]["api"], _API_MAP["2.0"]["api_sandbox_root"])
 
-                    print('failure for image code' + image[0])
+                for image in ocr_result:
+                    print(image[0])
+                    try:
+                        api_main.card_search(image[0])
+                    except:
 
+                        print('failure for image code' + image[0])
+            
             print('Carte bien uploadée')
     else:
         form = ScancardForm()

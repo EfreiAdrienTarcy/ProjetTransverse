@@ -1,3 +1,4 @@
+"""
 import sys, os
 sys.path.append(os.path.join(os.getcwd(),'ocr'))
 
@@ -22,3 +23,4 @@ for image in ocr_result:
     except:
 
         print('failure for image code' + image[0])
+"""
