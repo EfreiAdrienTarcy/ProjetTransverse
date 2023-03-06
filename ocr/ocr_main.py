@@ -39,8 +39,3 @@ def result(images):
                 print("no detection")
                 best_results.append('no card detected')
     return best_results
-
-print("Detection and recognition: ",detandrec,"\nRecognition only: ",reconly, "\nBest results: ",result())
-
-result(images)
-
