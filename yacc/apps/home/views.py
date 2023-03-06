@@ -2,6 +2,7 @@ import sys, os
 # Get working directory and add ocr and API to it
 sys.path.append(os.path.join(os.getcwd(),'ocr'))
 sys.path.append(os.path.join(os.getcwd(),'API'))
+sys.path.append(".")
 
 # Make necessary imports
 from ocr import app_detrec, app_rec, ocr_main, cropper
