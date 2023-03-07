@@ -32,13 +32,16 @@
                 </div>
                 <div class="col-5 my-3">
                   <h4 class="card-title text-center">{{card.nom}}</h4>
-                  <p> Cette carte est évaluée à <span class="badge bg-success">100 €</span> à ce jour <strong>03/03/2023</strong> sur le marché.</p>
-                  
+                  {% for price in prices %}
+                  <p> Cette carte est évaluée à <span class="badge bg-secondary"> {{price.trend}} €</span> à ce jour <strong>03/03/2023</strong> sur le marché.</p>
+                  {% endfor %}
                   <br>
                   <p class="card-text"><strong>Numéro :</strong> {{card.num}}</p>
                   <p class="card-text"><strong>Catégorie :</strong> {{card.category}}</p>
                   <p class="card-text"><strong>Rarity :</strong> {{card.rarity}}</p>
-                  <p class="card-text"><strong> <i class="fa-solid fa-gauge-simple"></i> Prix moyen :</strong> {{card.category}} €</p>
+                  {% for price in prices %}
+                  <p class="card-text"><strong>Prix moyen : </strong><span class="badge bg-success"> {{price.avg_price}} €</span> </p>
+                  {% endfor %}
                 </div>
                 <div class="col"></div>
               </div>

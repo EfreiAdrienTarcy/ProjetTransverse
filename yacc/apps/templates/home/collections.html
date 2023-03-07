@@ -32,8 +32,8 @@
               <tr>
                   <th class="border-gray-200">#</th>					
                   <th class="border-gray-200">Name</th>
-                  <th class="border-gray-200">Description</th>
-                  <th class="border-gray-200">Price</th>
+                  <th class="border-gray-200">Rarity</th>
+                  <th class="border-gray-200">Category</th>
                   <th class="border-gray-200">Scan date</th>
                   <th class="border-gray-200">Action</th>
               </tr>
@@ -60,8 +60,8 @@
                         </div>
                     </div>  
                 </td>                      
-                  <td><span class="fw-normal">{{card.description|truncatechars:25}}</span></td>
-                  <td><span class="fw-bold">$799,00</span></td>
+                  <td><span class="fw-normal"><span class="badge bg-success"> {{card.rarity}}</span></span></td>
+                  <td><span class="fw-bold">{{card.category}}</span></td>
                   <td><span class="fw-bold text-warning">{{card.date_enregistrement}} </span></td>
                   <td>
                       <div class="btn-group">

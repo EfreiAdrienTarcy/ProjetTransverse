@@ -9,3 +9,4 @@ from .models import *
 # Register your models here.
 
 admin.site.register(Cartes)
+admin.site.register(PrixHebdo)

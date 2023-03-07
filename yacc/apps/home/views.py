@@ -25,12 +25,19 @@ from mkmsdk.api_map import _API_MAP
 @login_required(login_url="/login/")
 def index(request):
     # Get all cards
-    cards = Cartes.objects.prefetch_related('prixhebdo_set').all()
+    #cards = Cartes.objects.all().select_related('prixhebdo')
+    cards_count = Cartes.objects.count()
+    cards = Cartes.objects.all()
+    card_prices = []
+    for card in cards:
+        prices = PrixHebdo.objects.filter(id_cartes=card.id)
+        if prices.exists():
+            card_prices.append({'card': card, 'prices': prices})
 
-    context = {'segment': 'index', 'cards': cards}
+    context = {'segment': 'index', 'cards': cards, 'card_prices': card_prices, 'cards_count': cards_count}
 
-    html_template = loader.get_template('home/index.html')
-    return HttpResponse(html_template.render(context, request))
+    html_template = "home/index.html"
+    return render(request, html_template, context)
 
 
 @login_required(login_url="/login/")
@@ -73,19 +80,12 @@ def scancard(request):
         form = ScancardForm(request.POST, request.FILES)
         if form.is_valid():
             print('Carte bien uploadée : Start')
-            # traitement
-            #Cartes.upload_card(request.FILES['file], request)
-            # form.save()
-            
             images = request.FILES['file']
 
             # we need to read the image file
             images = Image.open(io.BytesIO(images.read()))
             # Convert the PIL image to a NumPy array
             np_array_images = np.array(images)
-            print("\n\n type \n\n")
-            print(type(np_array_images))
-            print("\n\n type \n\n") 
 
             ocr_result = ocr_main.result(np_array_images)
             mkm_sandbox = Mkm(_API_MAP["2.0"]["api"], _API_MAP["2.0"]["api_sandbox_root"])
@@ -128,7 +128,7 @@ def scancard(request):
                     prix.save()
 
                     print("\n \n\n Carte bien enregistrée 2")
-
+                    return redirect(reverse('showcard', args=[carte.id]))  # redirect to showcard view with card ID as argument
 
                     
                 except Exception as e:
@@ -136,7 +136,6 @@ def scancard(request):
                     print(e)
             
             print('Carte bien uploadée End')
-            print(image[0])
     else:
         form = ScancardForm()
     
@@ -147,6 +146,8 @@ def scancard(request):
 @login_required(login_url="/login/")
 def showcard(request,id):
     card = Cartes.objects.get(id=id)
-    context = {'card':card,'segment': 'scancard' }
+    prices = PrixHebdo.objects.filter(id_cartes=id)
+
+    context = {'card':card,'prices': prices,'segment': 'scancard' }
     html_template = "home/showcard.html"
     return render(request, html_template, context)
