@@ -97,11 +97,13 @@ class Cartes(models.Model):
     num = models.TextField(blank=True, null=True)  # This field type is a guess.
     nom = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to="media/")
+    image = models.TextField(blank=True, null=True)
     level = models.TextField(blank=True, null=True)  # This field type is a guess.
     attribute = models.TextField(blank=True, null=True)
     type = models.TextField(blank=True, null=True)
     date_enregistrement = models.DateField(auto_now_add=True)
+    rarity = models.TextField(blank=True, null=True)
+    category = models.TextField(blank=True, null=True)
     id_user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='id_user', blank=True, null=True)
 
     def __str__(self):
@@ -160,9 +162,14 @@ class PrixHebdo(models.Model):
     prix = models.FloatField(blank=True, null=True)
     date_prix = models.DateField(blank=True, null=True)
     id_cartes = models.ForeignKey(Cartes, models.DO_NOTHING, db_column='id_cartes', blank=True, null=True)
-
+    sell = models.FloatField(blank=True, null=True)
+    low = models.FloatField(blank=True, null=True)
+    trend = models.FloatField(blank=True, null=True)
+    lowfoil = models.FloatField(blank=True, null=True)
+    avg_price = models.FloatField(blank=True, null=True)
+    lowex = models.FloatField(blank=True, null=True)
     class Meta:
-        managed = False
+       # managed = False
         db_table = 'prix_hebdo'
 
 

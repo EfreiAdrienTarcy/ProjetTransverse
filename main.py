@@ -1,5 +1,7 @@
+"""
 import sys, os
 sys.path.append(os.path.join(os.getcwd(),'ocr'))
+
 
 from ocr import app_detrec, app_rec, ocr_main, cropper
 from API import api_main
@@ -21,3 +23,4 @@ for image in ocr_result:
     except:
 
         print('failure for image code' + image[0])
+"""
