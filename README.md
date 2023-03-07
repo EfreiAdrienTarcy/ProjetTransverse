@@ -6,7 +6,7 @@
         style="display: block; margin: 0 auto" />
 </p>
 
-# OCR Part of the YACC project, made by PONNOU Wilfried and Sary Ballou
+# OCR Part of the YACC project, made by Team YACC
 ## <div align="center">➊ To run OCR make sure to downlad detection weights:</div>
 [Download detection model weights](https://drive.google.com/file/d/1Dyw5hAkQwpBJsnJRdbFyc3o1PIM1jk3M/view?usp=sharing)
 , rename it as db_resnet50_latest.pt if it is not already the case and put it in this folder
